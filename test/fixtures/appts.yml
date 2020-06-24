@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  length: 1
+  date: 2020-06-23
+  time: 2020-06-23 17:45:26
+  address: MyString
+  phone: MyString
+
+two:
+  name: MyString
+  length: 1
+  date: 2020-06-23
+  time: 2020-06-23 17:45:26
+  address: MyString
+  phone: MyString
