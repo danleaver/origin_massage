@@ -6,6 +6,7 @@ import Navbar from './components/shared/Navbar'
 const App = () => (
 
     <>
+    
     <Navbar />
     <Switch>
         

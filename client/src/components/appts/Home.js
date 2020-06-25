@@ -3,9 +3,12 @@ import { Header } from 'semantic-ui-react';
 import axios from 'axios';
 import ApptList from './ApptList';
 import ApptForm from './ApptForm';
+import Appt from './Appt';
+import { ApptConsumer } from '../../providers/ApptProvider';
 class Home extends Component {
 
   state = { appts: [] }
+  
 
   componentDidMount() {
     //ask rails for all todos
@@ -60,9 +63,20 @@ class Home extends Component {
   render() {
     const { appts } = this.state
     return (
+    
+    
     <>
+
+              <ApptConsumer>
+              {value => (
+                <>
+                {value.test}
+                </>
+              )}
+
+ </ApptConsumer>
       <Header> Origin Massage Appointments </Header>
-      
+
      
       <ApptForm addAppt={this.addAppt}/>
        <ApptList appts={appts} deleteAppt={this.deleteAppt} updateAppt={this.updateAppt} />
