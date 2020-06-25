@@ -27,8 +27,8 @@ class Api::ApptsController < ApplicationController
     end
 
     def destroy 
-        Todo.find(params[:id]).destroy
-        render json: { message: 'todo deleted'}
+        Appt.find(params[:id]).destroy
+        render json: { message: 'appointment deleted'}
     end
 
     private

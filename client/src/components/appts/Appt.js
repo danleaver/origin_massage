@@ -1,30 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Header, Card, Button } from 'semantic-ui-react';
+import ApptForm from './ApptForm';
 
-const Appt = ({ id, name, length, 
-    date, time, address, phone}) => (
-        
-            <Card.Group>
-            <Card>
-                <Card.Content>
-                    <Card.Header>{name}</Card.Header>
-                    <Card.Meta>{length} minutes </Card.Meta>
-                    <Card.Description>  {date} start time 
-                    {time} time
-                    {address}
-                    {phone}</Card.Description>  
-                </Card.Content>
-            <Card.Content>
-                <Button basic color='blue'>
-                    Edit
-                </Button>
-                <Button basic color='red'>
-                    Delete
-                </Button>
-            </Card.Content>
-            </Card>
-            </Card.Group>
-        
+class Appt extends Component {
+
+
+    state = { editing: false }
+
+    toggleEdit = () => (
+        this.setState({ editing: !this.state.editing })
     )
 
-export default Appt;
+    render() { 
+
+    
+        const { id, name, length, 
+            date, time, address, phone, deleteAppt, updateAppt } = this.props
+                const {editing} = this.state 
+                return ( 
+               
+                <Card.Group>
+
+                <Card>
+                    <Card.Content>
+                    { editing ? <ApptForm id={id} name={name} length={length} address={address} time={time}
+                    date={date} phone={phone}
+                    updateAppt={updateAppt} toggleEdit={this.toggleEdit}/> :
+               <>
+                        <Card.Header>{name}</Card.Header>
+                        <Card.Meta>{length} minutes </Card.Meta>
+                        <Card.Description>  {date} start time 
+                        {time} time
+                        {address}
+                        {phone}</Card.Description>  
+                </>
+    }
+                    </Card.Content>
+                <Card.Content>
+                    <Button basic color='blue' onClick={this.toggleEdit}>
+                        Edit
+                    </Button>
+                    <Button basic color='red' onClick={() => deleteAppt(id)} >
+                        Delete
+                    </Button>
+                </Card.Content>
+                </Card>
+
+                </Card.Group>
+            
+                
+            )
+        
+    }
+        
+}
+        export default Appt;
