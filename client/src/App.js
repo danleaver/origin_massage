@@ -1,77 +1,19 @@
-import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
-import axios from 'axios';
-import ApptList from './components/appts/ApptList';
-import ApptForm from './components/appts/ApptForm';
-class App extends Component {
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Home from './components/appts/Home';
+import NoMatch from './components/shared/NoMatch'
+import Navbar from './components/shared/Navbar'
+const App = () => (
 
-  state = { appts: [] }
-
-  componentDidMount() {
-    //ask rails for all todos
-    axios.get("/api/appts")
-      .then( res => {
-        this.setState({ appts: res.data})
-      })
-      .catch( err => {
-        console.log(err)
-      })
-  }
-
-
-    addAppt = (appt) => {
-      axios.post('/api/appts', appt )
-      .then( res => {
-        const { appts } = this.state
-        this.setState({ appts: [...appts, res.data]})
-      })
-      .catch( err => {
-        console.log(err)
-      })
-    }
-
-    updateAppt = (id, appt) => {
-      axios.patch(`/api/appts/${id}`, { appt })
-      .then( res => {
-        const appts = this.state.appts.map( a => {
-          if ( a.id === id ) {
-            return res.data
-          }
-          return a
-        })
-        this.setState({ appts })
-      })
-      .catch( err=> {
-        console.log(err)
-      })
-    }
-
-    deleteAppt = (id) => {
-      axios.delete(`/api/appts/${id}`)
-        .then( res => {
-          const { appts } = this.state
-          this.setState({ appts: appts.filter( a => a.id !== id )})
-        })
-        .catch(err => {
-          console.log(err)
-
-        })
-    }
-  render() {
-    const { appts } = this.state
-    return (
     <>
-      <Header> Origin Massage Appointments </Header>
-      
-     
-      <ApptForm addAppt={this.addAppt}/>
-       <ApptList appts={appts} deleteAppt={this.deleteAppt} updateAppt={this.updateAppt} />
+    <Navbar />
+    <Switch>
         
-      </>
- 
-    )
-  }
+        <Route exact path='/' component={Home} />
+        <Route component={NoMatch} />
+    </Switch>
+    </>
+)
 
-}
 
-export default App;
+export default App
