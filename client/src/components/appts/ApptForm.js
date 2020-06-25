@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 import { ApptConsumer } from '../../providers/ApptProvider';
 
+const validateForm = errors => {
+    let valid = true;
+    Object.values(errors).forEach(val => val.length > 0 && (valid = false));
+    return valid;
+}
+
+
 class ApptForm extends Component {
 
 
-    state = {name: '', length: '', date: '', time: '', address: '', phone: ''}
+    state = {errors: {length: ''}, name: '', length: '', date: '', time: '', address: '', phone: ''}
 
 componentDidMount() {
     if (this.props.id) {
@@ -17,7 +24,24 @@ componentDidMount() {
 handleChange = (e) => {
     const { name, value } = e.target
     this.setState({ [name]: value })
+    let errors = this.state.errors
+
+    switch (name) {
+        case 'length': 
+        errors.length = 
+        value.length < 2
+        ? 'time must be over 9 minutes'
+        : '';
+        break;
+    
+        default:
+            break;
+
+    }
+
 }
+
+
 
 handleSubmit = (e) => {
     e.preventDefault()
@@ -32,7 +56,7 @@ handleSubmit = (e) => {
 }
 
     render() {
-        const { name, length, date, time, address, phone } = this.state
+        const { name, length, date, time, address, phone, errors } = this.state;
         return(
             //new client or edit client if statement
             <> 
@@ -41,8 +65,10 @@ handleSubmit = (e) => {
                 name='name'
                 value={name}
                 onChange={this.handleChange}
+                
                 required
                 label='name'
+                
             />
                  <Form.Input
                 name='length'
@@ -51,6 +77,7 @@ handleSubmit = (e) => {
                 required
                 label='length'
             />
+            {errors.length.length > 0 && <span>{errors.length}</span>}
                  <Form.Input
                 name='date'
                 value={date}
@@ -97,6 +124,7 @@ const ConnectedApptForm = (props) => (
             <ApptForm
             { ...props }
             addAppt={value.addAppt}
+            updateAppt={value.updateAppt}
             />
         )}
     </ApptConsumer>

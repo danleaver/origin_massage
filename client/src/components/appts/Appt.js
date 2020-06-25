@@ -26,7 +26,7 @@ class Appt extends Component {
                     <Card.Content>
                     { editing ? <ApptForm id={id} name={name} length={length} address={address} time={time}
                     date={date} phone={phone}
-                    updateAppt={updateAppt} toggleEdit={this.toggleEdit}/> :
+                     toggleEdit={this.toggleEdit}/> :
                <>
                         <Card.Header>{name}</Card.Header>
                         <Card.Meta>{length} minutes </Card.Meta>

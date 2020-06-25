@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
+import { Header, Grid } from 'semantic-ui-react';
 import axios from 'axios';
 import ApptList from './ApptList';
 import ApptForm from './ApptForm';
-import Appt from './Appt';
-import { ApptConsumer } from '../../providers/ApptProvider';
+
 class Home extends Component {
 
   
@@ -16,12 +15,13 @@ class Home extends Component {
     
     
     <>
+    <ApptList />
 
-      <Header> Origin Massage Appointments </Header>
+      <ApptForm />
 
      
-      <ApptForm />
-       <ApptList />
+      
+       
         
       </>
  

@@ -8,7 +8,7 @@ const ApptList = () => (
 
     <Container>
     
-<Grid columns={3} divided >
+<Grid columns={3}  >
 <Grid.Row>
   <ApptConsumer>
     { value => (
@@ -19,8 +19,7 @@ const ApptList = () => (
                           key={a.id}
                           {...a}
                           
-                          // deleteAppt={deleteAppt}
-                          //updateAppt={updateAppt}
+                          
                           
                           />
                           </Grid.Column> 

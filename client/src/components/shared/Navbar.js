@@ -14,6 +14,7 @@ const Navbar = () => (
                 Edit Timeslots
             </Menu.Item>
         </NavLink>
+        
     </Menu>
 )
 
