@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
+import { ApptConsumer } from '../../providers/ApptProvider';
 
 class ApptForm extends Component {
 
@@ -88,4 +89,17 @@ handleSubmit = (e) => {
     }
 }
 
-export default ApptForm;
+
+
+const ConnectedApptForm = (props) => (
+    <ApptConsumer>
+        {value => (
+            <ApptForm
+            { ...props }
+            addAppt={value.addAppt}
+            />
+        )}
+    </ApptConsumer>
+)
+
+export default ConnectedApptForm;

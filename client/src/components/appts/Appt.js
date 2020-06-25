@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Card, Button } from 'semantic-ui-react';
 import ApptForm from './ApptForm';
+import { ApptConsumer } from '../../providers/ApptProvider';
 
 class Appt extends Component {
 
@@ -54,4 +55,18 @@ class Appt extends Component {
     }
         
 }
-        export default Appt;
+
+const ConnectedAppt = (props) => (
+    <ApptConsumer>
+        { value => (
+            <Appt
+            {...props }
+            deleteAppt={value.deleteAppt} 
+            updateAppt={value.updateAppt}
+            />
+        )}
+    </ApptConsumer>
+)
+
+
+export default ConnectedAppt;
